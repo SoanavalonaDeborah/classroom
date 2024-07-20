@@ -16,15 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from auth_app.views import main, sign_up, logout, home, login
+from auth_app.views import main, sign_up, logout, loginType, student_home, teacher_home
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
+    path('student_home', student_home, name='student_home'),
+    path('teacher_home', teacher_home, name='teacher_home'),
     path('logout', logout, name='logout'),
-    path('accounts/profile/', home, name='home'),
+    path('accounts/profile/', loginType, name='home'),
     path('sign-up/login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('sign-up/', sign_up, name='signup'),
-    path('login', login, name='login'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('', main, name='accueil'),
     path('admin/', admin.site.urls),
