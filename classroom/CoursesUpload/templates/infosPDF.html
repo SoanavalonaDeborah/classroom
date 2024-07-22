@@ -1,0 +1,17 @@
+<!-- myapp/templates/myapp/register_user.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Insertion</title>
+</head>
+<body>
+    <h2>PDF Insertion</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
+

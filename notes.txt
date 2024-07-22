@@ -1,1 +1,3 @@
 installer django, drfpasswordless
+
+membres du groupe:

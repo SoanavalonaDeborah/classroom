@@ -16,17 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from auth_app.views import main, sign_up, logout, loginType, student_home, teacher_home
+from CoursesUpload.views import InformationsPDF, UploadPDFform, SuccessPage, InformationsPDFList, download_pdf
+from auth_app.views import main, sign_up, loginType, student_home, teacher_home
 from django.contrib.auth.views import LoginView
 
 urlpatterns = [
-    path('student_home', student_home, name='student_home'),
-    path('teacher_home', teacher_home, name='teacher_home'),
-    path('logout', logout, name='logout'),
-    path('accounts/profile/', loginType, name='home'),
+    path('download/<int:course_id>/', download_pdf, name='download_pdf'),
+    path('register-pdf/upload-pdf/success/courses-list/', InformationsPDFList, name='courses_list2'),
+    path('courses-list/', InformationsPDFList, name='courses_list'),
+    path('register-pdf/upload-pdf/success/', SuccessPage, name='success'),
+    path('register-pdf/upload-pdf/', UploadPDFform, name='upload_pdf'),
+    path('register-pdf/', InformationsPDF, name='info_pdf'),
+    path('login/accounts/profile/student_home', student_home, name='student_home'),
+    path('login/accounts/profile/teacher_home', teacher_home, name='teacher_home'),
     path('sign-up/login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('sign-up/', sign_up, name='signup'),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', loginType, name='login'),
     path('', main, name='accueil'),
     path('admin/', admin.site.urls),
 ]
